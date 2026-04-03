@@ -1,0 +1,83 @@
+# ComfyUI-Iterative-Video
+
+Custom nodes for **iterative video generation** workflows in ComfyUI. Extract frames from a previous iteration's video and feed the last frame back as a reference image for the next generation pass.
+
+## Nodes
+
+### Iterative Video Frame Extractor
+
+Loads a video file, decodes its frames, and outputs:
+
+| Output | Type | Description |
+|---|---|---|
+| `last_frame` | IMAGE | The selected reference frame (default: last frame) |
+| `all_frames` | IMAGE | Every decoded frame as a batched IMAGE tensor |
+| `frame_count` | INT | Total number of frames loaded |
+| `width` | INT | Video width in pixels |
+| `height` | INT | Video height in pixels |
+
+**Inputs:**
+
+| Input | Type | Default | Description |
+|---|---|---|---|
+| `video_path` | STRING | `""` | Path to a video file **or** a directory (auto-selects newest file) |
+| `frame_index` | INT | `-1` | Which frame to return as `last_frame`. `-1` = final frame |
+| `file_pattern` | STRING | `*.mp4` | Glob pattern when `video_path` is a directory |
+| `skip_frames` | INT | `0` | Trim N frames from the end (useful if final frames are black) |
+| `max_frames_loaded` | INT | `0` | Cap memory usage by only loading the last N frames. `0` = all |
+
+### Iterative Video Path Builder
+
+Utility node that constructs numbered file paths for iteration loops:
+
+```
+iteration 0  →  iter_video_00000.mp4
+iteration 1  →  iter_video_00001.mp4
+...
+```
+
+Outputs `current_video_path`, `next_video_path`, and `next_iteration` so you can wire the iteration counter into a loop.
+
+## Installation
+
+```bash
+cd ComfyUI/custom_nodes
+git clone <this-repo> comfyui-iterative-video
+pip install -r comfyui-iterative-video/requirements.txt
+```
+
+Or just copy the folder into `custom_nodes/` and install `opencv-python` if you don't already have it.
+
+## Example Workflow
+
+```
+┌─────────────────────┐
+│  Path Builder        │
+│  iteration: 0        │──► current_video_path
+│  prefix: "iter_vid"  │──► next_video_path ──► (wire to Video Save node)
+└─────────────────────┘
+            │
+            ▼ current_video_path
+┌─────────────────────┐
+│  Frame Extractor     │
+│  frame_index: -1     │──► last_frame ──► (your img2vid / reference input)
+│  skip_frames: 0      │──► all_frames
+└─────────────────────┘
+```
+
+**Typical iterative loop:**
+
+1. **First iteration** — generate a video from a seed image using your preferred model (e.g., AnimateDiff, SVD, Wan, etc.)
+2. **Subsequent iterations** — the Frame Extractor reads the previous video, pulls the last frame, and feeds it as the init/reference image for the next generation pass
+3. **Path Builder** increments the filename so each iteration saves to a new file
+
+### Auto-Select Mode
+
+If you point `video_path` at a **directory** instead of a file, the node automatically picks the most recently modified file matching `file_pattern`. This is handy if your video saver uses unpredictable filenames — just point the node at the output folder.
+
+## Tips
+
+- **`skip_frames`** is useful when video generators produce black or corrupted trailing frames
+- **`max_frames_loaded`** saves VRAM/RAM when you only need the last frame — set it to `1` and the node will seek directly to the end of the video
+- **`all_frames`** output is a standard batched IMAGE tensor, so you can pipe it into any node that accepts image batches (preview, upscale, etc.)
+- The node prints which file it loaded and the frame count to the ComfyUI console for easy debugging
