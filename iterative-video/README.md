@@ -46,7 +46,7 @@ iteration 1  →  iter_video_00001.mp4
 
 ## Installation
 
-1. Copy the `iterative-video` folder into your ComfyUI `custom_nodes` directory:
+Copy the `iterative-video` folder into your ComfyUI `custom_nodes` directory:
 
 ```
 ComfyUI/
@@ -54,25 +54,55 @@ ComfyUI/
     iterative-video/
       __init__.py
       nodes.py
-      requirements.txt
+      requirements/
+        requirements.txt
+        *.whl
+      imgs/
       README.md
 ```
 
-2. Install dependencies using your ComfyUI Python. For standalone/portable builds:
-
-```bash
-.\python_embeded\python.exe -s -m pip install -r ComfyUI\custom_nodes\iterative-video\requirements.txt
-```
-
-For standard installs:
-
-```bash
-pip install -r ComfyUI/custom_nodes/iterative-video/requirements.txt
-```
+Then install dependencies using one of the methods below.
 
 > `torch` and `numpy` are already included with ComfyUI — the only package that may need installing is `opencv-python`.
 
-3. Restart ComfyUI. The nodes will appear under the **video/iterative** category.
+### Option A: Offline Install from Bundled Wheels (Windows)
+
+The `requirements/` folder includes pre-downloaded `.whl` files so you can install without an internet connection:
+
+```bash
+.\python_embeded\python.exe -s -m pip install --no-index --find-links ComfyUI\custom_nodes\iterative-video\requirements -r ComfyUI\custom_nodes\iterative-video\requirements\requirements.txt
+```
+
+> The bundled wheels are Windows-specific (`win_amd64`). For Linux, use Option B or Option C.
+
+### Option B: Online Install — Portable/Standalone Build (Windows)
+
+```bash
+.\python_embeded\python.exe -s -m pip install -r ComfyUI\custom_nodes\iterative-video\requirements\requirements.txt
+```
+
+### Option C: Online Install — Standard Python / Linux / Docker
+
+```bash
+pip install -r ComfyUI/custom_nodes/iterative-video/requirements/requirements.txt
+```
+
+### Re-downloading Wheels
+
+If you need to refresh the bundled wheels or download them for a different platform:
+
+```bash
+# From inside the requirements/ folder
+pip download -r requirements.txt -d .
+```
+
+For Linux wheels specifically:
+
+```bash
+pip download --platform manylinux2014_x86_64 --only-binary=:all: -r requirements.txt -d ./linux
+```
+
+After installing, restart ComfyUI. The nodes will appear under the **video/iterative** category.
 
 ## Usage
 
