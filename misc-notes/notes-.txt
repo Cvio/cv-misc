@@ -68,3 +68,45 @@ Use these steps to get into the Doubao platform.
 ### 4. Important Warnings for Generating Videos
 * ✅ **Use Text-to-Video:** Typing a description works very well and is stable.
 * ❌ **Avoid Image-to-Video:** Uploading a picture of a person often fails. The system has strict "portrait protection" rules that will block the video from generating.
+
+
+# 📄 Report: Kling AI Video Models
+
+### 1. What is Kling AI?
+* **Maker:** Kuaishou Technology (A major Chinese tech company and direct competitor to ByteDance).
+* **Status:** Fully Released globally (Stable Version 3.0 launched in February 2026).
+* **What it does:** Generates highly realistic, cinematic videos from text prompts, images, or reference videos. It is widely praised for simulating real-world physics, rendering 4K resolution, and generating built-in audio.
+
+---
+
+### 2. The Kling Model Family
+Unlike Seedance, Kling offers several different versions tailored to specific needs and budgets:
+
+* **Kling 3.0 / V3 Omni:** The newest flagship model. It features "Omni Native Audio" (perfect lip-syncing, dialogue, and sound effects generated simultaneously with the video), multi-shot storyboarding, and up to 15 seconds of continuous 4K/60fps video.
+* **Kling 2.6 & V2.5 Turbo:** The reliable, production-ready workhorses. They support highly accurate text-to-video and smooth camera motions, acting as more budget-friendly alternatives to the V3 models.
+* **Kling Video O1 / O3:** Specialized models focusing on precise video-to-video editing, layout controls, and scene refinement.
+
+---
+
+### 3. How to Access Kling AI (April 2026)
+Because Kling AI is officially launched globally, you do not need to use workarounds, VPNs, or virtual phone numbers to access it. You have two main paths:
+
+**Path A: The Official Platform (Best for direct use)**
+1. Go to **klingai.com**.
+2. Create an account.
+3. You receive a daily/monthly allowance of free credits, which is generally enough to generate standard 1080p watermarked videos. For 4K, watermark-free videos, paid subscriptions range from $9 to $89 per month.
+
+**Path B: Third-Party Studios (Best for pro creators)**
+You can use Kling via major AI creative suites like **Higgsfield**, **Fal.ai**, or **OpenArt**. These platforms allow you to pay per generation and use Kling models right alongside other competitors (like Sora or Runway) without needing a dedicated Kuaishou subscription.
+
+---
+
+### 4. Pricing Breakdown & Notable Features
+When accessing Kling models via API or pay-as-you-go platforms, the system operates on a precise "Resource Unit" formula calculated at **$0.14 per unit**. The final cost scales directly with the length, quality, and audio requirements of the prompt.
+
+* **Budget Generation:** A Standard 1-second video (no audio, V3 Omni or O1) costs **$0.084**.
+* **Standard Generation:** A 5-second video (no audio, Kling 2.6) costs **$0.21**.
+* **Premium Generation:** A Pro-level 10-second video featuring fully synced audio and voice control costs **$1.68**.
+
+**🌟 Standout Feature: Motion Control**
+Across its models, Kling heavily promotes "Motion Control." You can upload a reference video of a real person moving (like someone dancing or walking), along with a single static picture of an entirely different character. Kling will accurately animate the static character to mimic the exact physical movements from the video.
