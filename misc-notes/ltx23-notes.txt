@@ -16,7 +16,33 @@ https://comfyanonymous.github.io/ComfyUI_examples/wan22/
 
 
 https://huggingface.co/Wan-AI/Wan2.2-Animate-14B
-
 https://huggingface.co/Wan-AI/Wan2.2-I2V-A14B
-
 https://docs.ltx.video/open-source-model/integration-tools/comfy-ui
+
+
+Navigating AI model repositories can definitely feel like a minefield when you're just looking for practical, clean tools for a video workflow. I totally get the frustration of having to filter through endless NSFW tags just to find a simple camera or style modifier. As an AI, I can cut through the noise and pull exactly what you need. 
+
+Here is a curated list of 10 strictly SFW (Safe for Work) LoRAs for Wan 2.2. I've also included a couple of highly versatile Wan 2.1 models, as the community still heavily relies on them for specific camera motions and they play nicely within unified Wan workflows.
+
+### 10 SFW Wan Video LoRAs
+
+| LoRA Name | Category | Platform | Link |
+| :--- | :--- | :--- | :--- |
+| **Instareal WAN 2.2** | Style / Realism | Civitai | [Instareal WAN 2.2](https://civitai.com/models/1877171/instareal-wan-22) |
+| **Wan2.2-i2v Cinematic Flare** | Lighting / Effects | Civitai | [Cinematic Flare](https://civitai.com/models/1902817/wan22-i2v-cinematic-flare) |
+| **Emotional Breakdown (Wan 2.2)** | Expressions / Utility | Civitai | [Emotional Breakdown Helper](https://civitai.com/models/2071400/emotional-breakdown-helper-for-sadness-anger-etc) |
+| **Wan 2.1 I2V Dolly Zoom** | Camera Motion | Hugging Face | [Dolly Zoom LoRA](https://huggingface.co/ostris/wan21_i2v_dolly_zoom_lora) |
+| **360 Camera Orbit (Wan 2.1 I2V)** | Camera Motion | Civitai | [360 Camera Orbit](https://civitai.com/models/1379629/360-camera-orbit-wan-21-i2v-lora) |
+| **Wan2.1_FusionX - The LoRA** | Cinematic / Utility | Civitai | [FusionX LoRA](https://civitai.com/models/1678575/wan21fusionx-the-lora) |
+| **Wan2.2-Lightning (4-step Distill)** | Speed / Optimization | Hugging Face | [Wan2.2-Lightning](https://huggingface.co/lightx2v/Wan2.2-Lightning) |
+| **Wan-LoRA-Arcane-Jinx-v1** | Character / Style | Civitai | [Arcane Style LoRA](https://civitai.com/models/1332383/wan-lora-arcane-jinx-v1-wan-13b) |
+| **Seoullina v2.1 (Wan 2.2)** | Character / Realism | Civitai | [Seoullina v2.1](https://civitai.com/models/1837542/wan22-korean-women) |
+| **WAN 2.2 I2V GGUF Lightning** | Speed / Optimization | Civitai | [Lightning LoRA / Workflow](https://civitai.com/models/1822764/wan-22-i2v-gguf-compact-speed-wf-or-lightning-lora-44-steps) |
+
+---
+
+### Quick Usage Tips for Wan 2.2
+
+* **High vs. Low Noise:** Keep in mind that Wan 2.2 uses a Mixture-of-Experts (MoE) architecture. Many Wan 2.2 LoRAs come with both a "High Noise" model (which dictates the overall structure and layout) and a "Low Noise" model (which handles fine textures and micro-movements). You will often need to load both and balance their weights depending on the desired effect.
+* **Step Counts:** If you are using optimization LoRAs like the *Wan2.2-Lightning* distilled models, remember to drastically drop your inference steps (usually down to 4–8) and lower your guidance scale to avoid deep-frying your generations. 
+* **Trigger Words:** Even if a LoRA lists a specific trigger word, Wan 2.2's prompt adherence is remarkably strong. You can often get away with natural language descriptions instead of rigidly spamming the trigger token.
